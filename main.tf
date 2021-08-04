@@ -1,9 +1,7 @@
-resource "aci_rest" "fvTenant" {
-  dn         = "uni/tn-${var.name}"
-  class_name = "fvTenant"
+resource "aci_rest" "coopPol" {
+  dn         = "uni/fabric/pol-default"
+  class_name = "coopPol"
   content = {
-    name      = var.name
-    nameAlias = var.alias
-    descr     = var.description
+    type = var.coop_group_policy
   }
 }
