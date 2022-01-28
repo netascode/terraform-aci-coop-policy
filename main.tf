@@ -1,4 +1,4 @@
-resource "aci_rest" "coopPol" {
+resource "aci_rest_managed" "coopPol" {
   dn         = "uni/fabric/pol-default"
   class_name = "coopPol"
   content = {

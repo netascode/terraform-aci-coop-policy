@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -17,7 +17,7 @@ module "main" {
   coop_group_policy = "strict"
 }
 
-data "aci_rest" "coopPol" {
+data "aci_rest_managed" "coopPol" {
   dn = "uni/fabric/pol-default"
 
   depends_on = [module.main]
@@ -28,7 +28,7 @@ resource "test_assertions" "coopPol" {
 
   equal "type" {
     description = "type"
-    got         = data.aci_rest.coopPol.content.type
+    got         = data.aci_rest_managed.coopPol.content.type
     want        = "strict"
   }
 }
